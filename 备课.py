@@ -1,31 +1,40 @@
 from tkinter import *
 
+V = 10
 tk = Tk()
-Ben_IQ = 100
-canvas = Canvas(tk, width=100, height=100, bg='yellow')
+canvas = Canvas(tk, width=500, height=500)
 canvas.pack()
-canvas.create_text(50, 50, text=Ben_IQ, font=('Arial', 50))
+ball_id = canvas.create_oval(10, 10, 25, 25, fill='red')
+canvas.pack()
+canvas.move(ball_id, 250, 250)
 
 
-def A():
-    global Ben_IQ
-    Ben_IQ = Ben_IQ + 1
-    canvas.delete('all')
-    canvas.create_text(50, 50, text=Ben_IQ, font=('Arial', 50))
+def up():
+    canvas.move(ball_id, 0, -V)
 
 
-def B():
-    global Ben_IQ
-    if Ben_IQ > 100:
-        Ben_IQ = Ben_IQ - 1
-        canvas.delete('all')
-        canvas.create_text(50, 50, text=Ben_IQ, font=('Arial', 50))
-    else:
-        pass
+def down():
+    canvas.move(ball_id, 0, V)
 
 
-bt = Button(tk, text='IQ+1', command=A)
-bt.pack()
-bt2 = Button(tk, text='IQ-1', command=B)
-bt2.pack()
+def left():
+    canvas.move(ball_id, -V, 0)
+
+
+def right():
+    canvas.move(ball_id, V, 0)
+
+
+bt_up = Button(tk, width=5, height=5, text='上', command=up)
+bt_up.pack()
+bt_down = Button(tk, width=5, height=5, text='下', command=down)
+bt_down.pack()
+bt_left = Button(tk, width=5, height=5, text='左', command=left)
+bt_left.pack()
+bt_right = Button(tk, width=5, height=5, text='右', command=right)
+bt_right.pack()
+bt_up.place(x=250, y=10)
+bt_down.place(x=250, y=110)
+bt_right.place(x=300, y=60)
+bt_left.place(x=200,y=60)
 tk.mainloop()
