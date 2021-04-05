@@ -3,7 +3,6 @@ from tkinter import *
 
 w = 0
 h = 100
-True_article = ''
 file_name = []
 cat_name = []
 file_list = []
@@ -22,25 +21,32 @@ for root, dirs, files in os.walk(file_dir):
         cat_name = list(set(cat_name))
 
 
-def read():
+def read_list(num):
     tk_book = Tk()
     file = open(
-        ("C:\\Users\\jerry\\Documents\\GitHub\\Project\\XiaoMingLibrary\\Libraries\\%s" % True_article),
+        ("C:\\Users\\jerry\\Documents\\GitHub\\Project\\XiaoMingLibrary\\Libraries\\%s" % file_name[num]),
         encoding='utf8').read()
-    canvas_book = Canvas(tk_book, width=500, height=500)
+    canvas_book = Canvas(tk_book, width=1000, height=500)
     canvas_book.pack()
-    canvas.create_text(320, 50, text=('%s' % True_article), font=('Arial', 50))
-    canvas.create_text(320, 170, text=file, font=('Arial', 10))
-
+    canvas_book.create_text(500, 50, text=('%s' % article_name[num]), font=('Arial', 50))
+    canvas_book.create_text(500, 250, text=file, font=('Arial', 10))
 
 def all_book():
-    global True_article
+    global w
+    global h
     tk.title('全部图书')
     canvas.delete('all')
+    canvas.create_text(250, 50, text='全部图书', font=('Arial', 50), fill='yellow')
     for all_book_book in range(0, len(article_name)):
-        bt = Button(tk, text=('%s' % article_name[all_book_book]), command=read())
+        bt = Button(tk, text=('%s' % article_name[all_book_book]), command=read_list)
+        #bt = Button(tk, text=('%s' % article_name[all_book_book]))
         bt.pack()
-        True_article=article_name[all_book_book]
+        bt.place(x=w, y=h)
+        if h < 450:
+            h = h + 30
+        else:
+            w = w + 60
+            h = 100
 
 
 def start():
@@ -48,6 +54,7 @@ def start():
         bt_all_book.place(x=1000, y=1000)
         all_book()
 
+    canvas.delete('all')
     tk.title('主页')
     canvas.create_text(250, 100, text='欢迎来到小明图书馆!', font=('Arial', 40), fill='yellow')
     bt_all_book = Button(tk, width=20, height=5, text='所有图书', command=all_book1)
