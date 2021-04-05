@@ -3,6 +3,7 @@ from tkinter import *
 
 w = 0
 h = 100
+True_article = ''
 file_name = []
 cat_name = []
 file_list = []
@@ -21,9 +22,25 @@ for root, dirs, files in os.walk(file_dir):
         cat_name = list(set(cat_name))
 
 
+def read():
+    tk_book = Tk()
+    file = open(
+        ("C:\\Users\\jerry\\Documents\\GitHub\\Project\\XiaoMingLibrary\\Libraries\\%s" % True_article),
+        encoding='utf8').read()
+    canvas_book = Canvas(tk_book, width=500, height=500)
+    canvas_book.pack()
+    canvas.create_text(320, 50, text=('%s' % True_article), font=('Arial', 50))
+    canvas.create_text(320, 170, text=file, font=('Arial', 10))
+
+
 def all_book():
+    global True_article
     tk.title('全部图书')
     canvas.delete('all')
+    for all_book_book in range(0, len(article_name)):
+        bt = Button(tk, text=('%s' % article_name[all_book_book]), command=read())
+        bt.pack()
+        True_article=article_name[all_book_book]
 
 
 def start():
