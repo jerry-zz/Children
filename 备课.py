@@ -1,7 +1,7 @@
 import os
 from tkinter import *
 
-a = 0
+n = 0
 w = 0
 h = 100
 file_name = []
@@ -25,16 +25,16 @@ for root, dirs, files in os.walk(file_dir):
 def read_list():
     tk_book = Tk()
     file = open(
-        ("C:\\Users\\jerry\\Documents\\GitHub\\Project\\XiaoMingLibrary\\Libraries\\%s" % file_name[a]),
+        ("C:\\Users\\jerry\\Documents\\GitHub\\Project\\XiaoMingLibrary\\Libraries\\%s" % file_name[n]),
         encoding='utf8').read()
     canvas_book = Canvas(tk_book, width=1000, height=500)
     canvas_book.pack()
-    canvas_book.create_text(500, 50, text=('%s' % article_name[a]), font=('Arial', 50))
+    canvas_book.create_text(500, 50, text=('%s' % article_name[n]), font=('Arial', 50))
     canvas_book.create_text(500, 250, text=file, font=('Arial', 10))
+    print(n)
 
 
 def all_book():
-    global a
     global w
     global h
     tk.title('全部图书')
@@ -43,7 +43,6 @@ def all_book():
     for all_book_book in range(0, len(article_name)):
         bt = Button(tk, text=('%s' % article_name[all_book_book]), command=read_list)
         bt.pack()
-        a = all_book_book
         bt.place(x=w, y=h)
         if h < 450:
             h = h + 30
