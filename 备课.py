@@ -1,7 +1,8 @@
-while 1:
-    x = eval(input('x:'))
-    y = eval(input('y:'))
-    if y >= 0:
-        print(x ** 2 + 2 * y)
+while True:
+    a = eval(input('a:'))
+    c = (5 * -4 / 3)
+    b = (a * -4 / 3 + 3)
+    if b == c:
+        print('yes')
     else:
-        print(x ** 2 - 2 * y)
+        print('no')
